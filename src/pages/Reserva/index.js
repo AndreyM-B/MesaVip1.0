@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput, Pressable, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 const agendadas = [
     {
         codigo_produto: 1,
-        nome_produto: 'Habib’s Tamboré, Barueri',
+        nome_produto: 'Habib’s, São Paulo',
         valor_produto: '90,00',
         img_logo: require('../Favoritos/logohab.png'),
         descricao: 'Domingo, 31/12/23 ás 13:30'
@@ -19,7 +19,7 @@ const agendadas = [
     }
 ];
 
-const resAgenda = ({item}) => {
+const resAgenda = ({ item }) => {
     return (
         <View style={styles.btnLogo}>
             <TouchableOpacity onPress={() => { }}>
@@ -27,20 +27,20 @@ const resAgenda = ({item}) => {
                 <Image
                     style={styles.image}
                     source={item.img_logo}
-                /> 
+                />
             </TouchableOpacity>
 
-                    {/* DESCRIÇÃO DO FAVORITADO */}
-                <View style={styles.viewDescription}>
-                    <Text style={styles.descriptionTxt}>
-                        {item.nome_produto}
-                    </Text>
+            {/* DESCRIÇÃO DO FAVORITADO */}
+            <View style={styles.viewDescription}>
+                <Text style={styles.descriptionTxt}>
+                    {item.nome_produto}
+                </Text>
 
-                    {/* SUB DESCRIÇÃO */}
-                    <Text style={styles.subDescripition}>
-                        {item.descricao}
-                    </Text>
-                </View>
+                {/* SUB DESCRIÇÃO */}
+                <Text style={styles.subDescripition}>
+                    {item.descricao}
+                </Text>
+            </View>
         </View>
     );
 }
@@ -48,21 +48,21 @@ const resAgenda = ({item}) => {
 const onde_esteve = [
     {
         codigo_produto: 1,
-        nome_produto: 'Manai Gastronomia',
+        nome_produto: 'Casa do Porco',
         valor_produto: '90,00',
-        img_logo: require('../Favoritos/logoManai.jpeg'),
+        img_logo: require('../Favoritos/Casa-do-Porco-logo.jpeg'),
         descricao: 'Terça, 15/08/23 ás 18:30'
 
     }, {
         codigo_produto: 2,
-        nome_produto: 'Habib’s Tamboré, Barueri',
+        nome_produto: 'Fogo de Chão, São Paulo',
         valor_produto: '90,00',
-        img_logo: require('../Favoritos/logohab.png'),
+        img_logo: require('../Favoritos/fogo-logo.png'),
         descricao: 'Segunda, 30/10/23 ás 18:30'
     }
 ];
 
-const anteriores = ({item}) => {
+const anteriores = ({ item }) => {
     return (
         <View style={styles.btnLogo}>
             <TouchableOpacity onPress={() => { }}>
@@ -70,10 +70,10 @@ const anteriores = ({item}) => {
                 <Image
                     style={styles.image}
                     source={item.img_logo}
-                /> 
+                />
             </TouchableOpacity>
 
-                {/* DESCRIÇÃO DO FAVORITADO */}
+            {/* DESCRIÇÃO DO FAVORITADO */}
             <View style={styles.viewDescription}>
                 <Text style={styles.descriptionTxt}>
                     {item.nome_produto}
@@ -107,14 +107,14 @@ export default function Reservas() {
                     data={agendadas}
                     renderItem={resAgenda}
                     ListEmptyComponent={<Text> A LISTA DE PRODUTOS ESTÁ VAZIA</Text>}
-                    keyExtractor={item => item.codigo_produto}/>
+                    keyExtractor={item => item.codigo_produto} />
 
                 <Text style={styles.txtAgenda}>Onde já esteve:</Text>
                 <FlatList
                     data={onde_esteve}
                     renderItem={anteriores}
                     ListEmptyComponent={<Text> A LISTA DE PRODUTOS ESTÁ VAZIA</Text>}
-                    keyExtractor={item => item.codigo_produto}/>
+                    keyExtractor={item => item.codigo_produto} />
             </SafeAreaView>
         </SafeAreaView>
     );
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 60,
-        height: 60, 
+        height: 60,
         borderRadius: 100,
         borderWidth: 2.5,
         borderColor: '#FE0000'

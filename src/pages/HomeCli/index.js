@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput, Pressable, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useState, useEffect } from 'react';
 
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,82 +11,34 @@ const prod = [
     {
         codigo_produto: 1,
         codigo_categoria: 1,
-        nome_produto: 'Outback SteakHouse',
+        name_produto: 'Outback SteakHouse',
         valor_produto: '90,00',
-        imagem_livro:require('../HomeCli/outback.png'),
-        descricao_produto: 'Av. dos Autonomistas,1400'
+        imagem_livro: require('../HomeCli/outback.png'),
+        descricao_produto: 'Outback SteakHouse \n Av. Dos Autonomistas, 1400 - Osasco'
     },
     {
         codigo_produto: 2,
         codigo_categoria: 1,
-        nome_produto: 'Mouse',
+        name_produto: 'Casa Do Porco',
         valor_produto: '90,00',
-        imagem_livro:require('../HomeCli/outback2.png'),
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
+        imagem_livro: require('../HomeCli/Casa-do-Porco.png'),
+        descricao_produto: 'Casa Do Porco \n R. Araújo, 124 - República, São Paulo'
     },
     {
         codigo_produto: 3,
         codigo_categoria: 5,
-        nome_produto: 'Isaac SmartWatch',
+        name_produto: 'Habib’s',
         valor_produto: '90,00',
-        imagem_livro: { uri:'https://www.baressp.com.br/bares/fotos/outback_alphaville_011.jpg'},
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
+        imagem_livro: require('../HomeCli/habibs.jpg'),
+        descricao_produto: 'Habib’s \n R. Cerro Corá, 307 - Lapa, São Paulo'
     },
     {
         codigo_produto: 4,
         codigo_categoria: 5,
-        nome_produto: 'SmartPhone',
+        name_produto: 'Fogo de Chão',
         valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 5,
-        codigo_categoria: 4,
-        nome_produto: 'Camiseta',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 6,
-        codigo_categoria: 4,
-        nome_produto: 'Calça',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 7,
-        codigo_categoria: 3,
-        nome_produto: 'Desodorante',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 8,
-        codigo_categoria: 3,
-        nome_produto: 'Shampoo',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 9,
-        codigo_categoria: 2,
-        nome_produto: 'Caderno',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
-    },
-    {
-        codigo_produto: 10,
-        codigo_categoria: 2,
-        nome_produto: 'Caneta',
-        valor_produto: '90,00',
-        imagem_livro: { uri: 'https://i.em.com.br/Zkntn9UJ_LfIw925yyFAEGjOYI0=/1772x1181/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/29/1500287/outback_1_272600.jpg' },
-        descricao_produto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque libero, tempor id blandit id, interdum ut sapien.'
+        imagem_livro: require('../HomeCli/fogo-de-chao.jpg'),
+        descricao_produto: 'Fogo de Chão \n R. Augusta, 2077 - Cerqueira César, SP'
     },
 ];
 
@@ -94,31 +46,55 @@ const prod = [
 const ProdItem = ({ item, navigation }) => {
     return (
         <View style={styles.container2}>
-        <TouchableOpacity onPress={() => navigation.navigate('DetailsCli')} >
-            {/* Image  */}
-            <Image
-                style={styles.image}
-                source={item.imagem_livro}
-            />
-        </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('DetailsCli')} >
+                {/* Image  */}
+                <Image
+                    style={styles.image}
+                    source={item.imagem_livro}
+                />
+            </TouchableOpacity>
 
-        {/* Bed & Bedroom  */}
-        <Text style={styles.description}>
-            {item.nome_produto}
-        </Text>
+            {/* Bed & Bedroom  */}
+            <Text style={styles.description}>
+                {item.nome_produto}
+            </Text>
 
-        {/* Type & Description */}
-        <Text style={styles.description} numberOfLines={2}>
-            {item.descricao_produto}
-        </Text>
+            {/* Type & Description */}
+            <Text style={styles.description} numberOfLines={2}>
+                {item.descricao_produto}
+            </Text>
 
-        {/*  Old price & new price */}
-    </View>
+            {/*  Old price & new price */}
+        </View>
     );
 
 }
 export default function HomeCli() {
     const navigation = useNavigation();
+    const [searchText, setSearchText] = useState('');
+    const [list, setList] = useState(prod);
+
+    useEffect(() => {
+        if (searchText === '') {
+            setList(prod);
+        } else {
+            setList(
+                prod.filter(
+                    (item) =>
+                        item.name_produto.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+                )
+            );
+        }
+    }, [searchText]);
+
+    const handleOrderClick = () => {
+        let newList = [...prod];
+
+        newList.sort((a, b) => (a.name_produto > b.name_produto ? 1 : b.name_produto > a.name_produto ? -1 : 0));
+
+        setList(newList);
+    };
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 
@@ -127,7 +103,12 @@ export default function HomeCli() {
                     <TouchableOpacity>
                         <View style={styles.searchBtn}>
                             <Ionicons name="search" size={24} />
-                    
+                            <TextInput
+                                placeholder="Pesquise uma pessoa"
+                                placeholderTextColor="#888"
+                                value={searchText}
+                                onChangeText={(t) => setSearchText(t)}
+                            />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.filterBtn}>
@@ -139,10 +120,10 @@ export default function HomeCli() {
 
             <SafeAreaView style={styles.container1}>
                 <FlatList
-                    data={prod}
+                    data={list}
                     renderItem={({ item }) => <ProdItem item={item} navigation={navigation} />}
                     ListEmptyComponent={<Text>A LISTA DE PRODUTOS ESTÁ VAZIA</Text>}
-                    keyExtractor={prod => prod.codigo_produto}
+                    keyExtractor={(list) => list.codigo_produto}
                 />
 
             </SafeAreaView>
@@ -163,7 +144,7 @@ const styles = StyleSheet.create({
         shadowOffset: {
             width: 1,
             height: 10,
-            
+
         },
     },
     container1: {
@@ -174,9 +155,9 @@ const styles = StyleSheet.create({
     },
     container2: {
         margin: 20,
-        borderBottomWidth:0.5,
-        paddingBottom:20,
-        borderColor:'#a2a2a2',
+        borderBottomWidth: 0.5,
+        paddingBottom: 20,
+        borderColor: '#a2a2a2',
         borderRadius: 10,
     },
     actionRow: {
@@ -228,8 +209,8 @@ const styles = StyleSheet.create({
         height: 250, // ajuste conforme necessário
         resizeMode: 'cover',
         borderRadius: 10,
-        borderWidth:2.5,
-        borderColor:'#FE0000'
+        borderWidth: 2.5,
+        borderColor: '#FE0000'
     },
 
     bedrooms: {

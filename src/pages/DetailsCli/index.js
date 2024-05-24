@@ -30,7 +30,7 @@ export default function Welcome() {
                 />
  
                 {/* Botão de voltar para a esquerda no canto superior esquerdo do logo */}
-                <TouchableOpacity style={styles.return}>
+                <TouchableOpacity style={styles.return} onPress={() => navigation.navigate('HomeCli')}>
                     <AntDesign name="arrowleft" style={styles.return} />
                 </TouchableOpacity>
             </View>
