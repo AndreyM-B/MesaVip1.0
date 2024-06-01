@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import styles from './styles';
 import * as Animatable from 'react-native-animatable';
 import { AntDesign, FontAwesome, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -32,7 +33,7 @@ export default function Perfil() {
 
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
                 <ScrollView>
-                    <View style={styles.container2}>
+                    <View style={styles.containerName}>
                         <View style={styles.name}>
                             <Text style={styles.text}>Thiago Justino</Text>
                         </View>
@@ -83,92 +84,3 @@ export default function Perfil() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 2,
-    },
-    container2: {
-        margin: 20,
-        marginTop: 70,
-        borderBottomWidth: 1,
-        borderColor: '#a2a2a2',
-        borderRadius: 10,
-    },
-    containerLogo: {
-        flex: 0.4,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    containerForm: {
-        flex: 1,
-        backgroundColor: '#141414',
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        borderWidth: 3,
-        borderColor: '#fff',
-        paddingEnd: '5%',
-    },
-    title: {
-        color: '#fff',
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 28,
-        paddingStart: '5%',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    subTitle: {
-        color: '#a2a2a2',
-        fontSize: 16.5,
-        fontWeight: 'bold',
-        marginTop: 5,
-        paddingStart: '3%',
-    },
-    text: {
-        color: '#fff',
-        paddingStart: '5%',
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginTop: 15,
-    },
-    iconsStyle: {
-        fontSize: 40,
-        color: '#fff',
-        marginStart:'5%'
-    },
-    name: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    btn: {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        borderBottomWidth:1,
-        borderColor: '#a2a2a2',
-        borderRadius: 25,
-    },
-    image: {
-        bottom: 80,
-        position: "absolute",
-        width: width * 0.5,
-        height: width * 0.5,
-        backgroundColor: "#ffffff",
-        borderRadius: width * 0.5,
-        overflow: "hidden",
-        justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 3,
-        borderColor: "#fff"
-    },
-    imageView: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        position: 'absolute',
-        right: '50%',
-        top: '50%',
-        left: '50%',
-        zIndex: 1
-    }
-})
